@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="vehicleTypeChoice">
+        <item>Please choose the vehicle type</item>
         <item>Car</item>
         <item>Motorcycle</item>
     </string-array>
     <string-array name="AcademicYearChoice">
+        <item>Please choose the Academic Year</item>
         <item>2023/2024</item>
         <item>2024/2025</item>
     </string-array>

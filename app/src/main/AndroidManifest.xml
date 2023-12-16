@@ -13,6 +13,12 @@
         android:theme="@style/Theme.UMPSASummon"
         tools:targetApi="31">
         <activity
+            android:name=".VehicleDetails"
+            android:exported="false" />
+        <activity
+            android:name=".VehicleMenu"
+            android:exported="false" />
+        <activity
             android:name=".VehicleEdit"
             android:exported="false" />
         <activity

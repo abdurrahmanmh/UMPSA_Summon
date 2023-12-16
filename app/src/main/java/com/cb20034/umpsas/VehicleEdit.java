@@ -1,7 +1,9 @@
 package com.cb20034.umpsas;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -148,7 +150,14 @@ public class VehicleEdit extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
                 // Update successful! You can handle it here (e.g., show a toast, close the activity)
                 Toast.makeText(VehicleEdit.this, "Vehicle updated successfully!", Toast.LENGTH_SHORT).show();
-                finish(); // Close the activity after successful update
+                new Handler().postDelayed(() -> {
+                    // Finish the current activity (vehicle registration)
+                    finish();
+
+                    // Start the vehicle menu activity after a 1-second delay
+                    Intent intent = new Intent(VehicleEdit.this, VehicleMenu.class);
+                    startActivity(intent);
+                }, 1000); // Close the activity after successful update
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

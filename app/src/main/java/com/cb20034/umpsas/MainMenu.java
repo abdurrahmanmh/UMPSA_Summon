@@ -40,6 +40,7 @@ public class MainMenu extends AppCompatActivity {
         });
 
 
+
         welcomeTextView = findViewById(R.id.welcome);
 
         // Initialize buttons
@@ -105,7 +106,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start ReportManagement.class or Vehicle.class based on user type
-                startActivity(getIntentForActivity(userType, ReportList.class, Vehicle.class));
+                startActivity(getIntentForActivity(userType, ReportList.class, VehicleMenu.class));
             }
         });
 

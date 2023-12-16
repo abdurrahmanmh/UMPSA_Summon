@@ -3,10 +3,10 @@ package com.cb20034.umpsas;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,18 +18,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class VehicleRegistration extends AppCompatActivity {
 
-    private EditText licenseValidDateText;
-    private Spinner spinnerVehicleType, spinnerAcademicYear;
-    private TextInputEditText brandText, modelText, colorText, plateNoText;
+    private TextInputEditText brandText, modelText, colorText, plateNoText, licenseValidDateText;
     private Button cancelButton, confirmButton;
-
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
+    private Spinner spinnerAcademicYear,spinnerVehicleType ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,23 +37,17 @@ public class VehicleRegistration extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
 
         // Initialize UI elements
-        licenseValidDateText = findViewById(R.id.LicenseValidDateText);
-        spinnerVehicleType = findViewById(R.id.spinnerVehicleType);
-        spinnerAcademicYear = findViewById(R.id.spinnerAcademicYear);
         brandText = findViewById(R.id.brandText);
         modelText = findViewById(R.id.modelText);
         colorText = findViewById(R.id.ColorText);
         plateNoText = findViewById(R.id.plateNoText);
+        licenseValidDateText = findViewById(R.id.LicenseValidDateText);
         cancelButton = findViewById(R.id.cancelButton);
         confirmButton = findViewById(R.id.confirmButton);
+        spinnerVehicleType = findViewById(R.id.spinnerVehicleType);
+        spinnerAcademicYear = findViewById(R.id.spinnerAcademicYear);
 
-        // Set up a click listener for the date text field
-        licenseValidDateText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog();
-            }
-        });
+
 
         // Set up button click listeners
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +69,14 @@ public class VehicleRegistration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerVehicle(); // Perform vehicle registration when confirm button is clicked
+            }
+        });
+
+        // Set up a click listener for the date text field
+        licenseValidDateText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
             }
         });
     }
@@ -117,30 +115,48 @@ public class VehicleRegistration extends AppCompatActivity {
             String userId = currentUser.getUid();
 
             // Get values from UI elements
-            String vehicleType = spinnerVehicleType.getSelectedItem().toString();
             String brand = brandText.getText().toString();
             String model = modelText.getText().toString();
             String color = colorText.getText().toString();
-            String licenseValidDate = licenseValidDateText.getText().toString();
             String plateNo = plateNoText.getText().toString();
+            String licenseValidDate = licenseValidDateText.getText().toString();
             String academicYear = spinnerAcademicYear.getSelectedItem().toString();
-
+            String vehicleType = spinnerVehicleType.getSelectedItem().toString();
             // Create a Map to store vehicle details
-            Map<String, Object> vehicleData = new HashMap<>();
-            vehicleData.put("vehicleType", vehicleType);
-            vehicleData.put("brand", brand);
-            vehicleData.put("model", model);
-            vehicleData.put("color", color);
-            vehicleData.put("licenseValidDate", licenseValidDate);
-            vehicleData.put("plateNo", plateNo);
-            vehicleData.put("academicYear", academicYear);
+            Vehicle vehicle = new Vehicle();
+
+            if ("Please choose the vehicle type".equals(vehicleType)) {
+                // User has not selected a valid type, show an error message
+                Toast.makeText(this, "Please choose a valid vehicle type", Toast.LENGTH_SHORT).show();
+                return; // Exit the method, do not proceed with registration
+            }
+            if ("Please choose the Academic Year".equals(academicYear)) {
+                // User has not selected a valid type, show an error message
+                Toast.makeText(this, "Please choose a valid vehicle type", Toast.LENGTH_SHORT).show();
+                return; // Exit the method, do not proceed with registration
+            }
+
+            vehicle.setVehicleType(vehicleType);
+            vehicle.setBrand(brand);
+            vehicle.setModel(model);
+            vehicle.setColor(color);
+            vehicle.setPlateNo(plateNo);
+            vehicle.setLicenseValidDate(licenseValidDate);
+            vehicle.setAcademicYear(academicYear);
 
             // Add the vehicle details to Firestore
             firestore.collection("users").document(userId).collection("vehicles")
-                    .add(vehicleData)
+                    .add(vehicle)
                     .addOnSuccessListener(documentReference -> {
                         Toast.makeText(VehicleRegistration.this, "Vehicle registered successfully", Toast.LENGTH_SHORT).show();
-                        finish();
+                        new Handler().postDelayed(() -> {
+                            // Finish the current activity (vehicle registration)
+                            finish();
+
+                            // Start the vehicle menu activity after a 1-second delay
+                            Intent intent = new Intent(VehicleRegistration.this, VehicleMenu.class);
+                            startActivity(intent);
+                        }, 1000); // 1000 milliseconds = 1 second
                     })
                     .addOnFailureListener(e -> {
                         Toast.makeText(VehicleRegistration.this, "Failed to register vehicle", Toast.LENGTH_SHORT).show();
