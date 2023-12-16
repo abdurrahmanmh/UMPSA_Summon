@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1054276872078",
+    "project_id": "umpsa-summon",
+    "storage_bucket": "umpsa-summon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054276872078:android:d333b6aa2bbe3a4f47e6df",
+        "android_client_info": {
+          "package_name": "com.cb20034.umpsas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgh7kCYef1SiN0b1cwK--XTkbOQPNJxnQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

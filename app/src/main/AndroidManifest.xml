@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UMPSASummon"
+        tools:targetApi="31">
+        <activity
+            android:name=".VehicleEdit"
+            android:exported="false" />
+        <activity
+            android:name=".VehicleList"
+            android:exported="false" />
+        <activity
+            android:name=".Notification"
+            android:exported="false" />
+        <activity
+            android:name=".ReportDetail"
+            android:exported="false" />
+        <activity
+            android:name=".ReportList"
+            android:exported="false" />
+        <activity
+            android:name=".ReceiptDetail"
+            android:exported="false" />
+        <activity
+            android:name=".SummonDetail"
+            android:exported="false" />
+        <activity
+            android:name=".ReceiptList"
+            android:exported="false" />
+        <activity
+            android:name=".VehicleRegistration"
+            android:exported="false"
+            android:label="@string/title_activity_vehicle_registration"
+            android:theme="@style/Theme.UMPSASummon" />
+        <activity
+            android:name=".Summons"
+            android:exported="false" />
+        <activity
+            android:name=".Vehicle"
+            android:exported="false" />
+        <activity
+            android:name=".MainMenu"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".StartPage"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

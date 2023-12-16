@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainMenu">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="371dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center"
+            android:background="@drawable/blue_box"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="10dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#FFFFFF" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="31dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bSummons"
+                android:layout_width="183dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center|center_horizontal|left|center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_box_second"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="10dp"
+                android:text="Summons"
+                android:textAlignment="center"
+                android:textColor="#405DB4" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/bVehicle"
+                android:layout_width="183dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center|right"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_box_second"
+                android:gravity="center_horizontal|center_vertical"
+                android:padding="10dp"
+                android:text="Vehicle"
+                android:textAlignment="center"
+                android:textColor="#405DB4" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bReceipt"
+                android:layout_width="183dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center|center_horizontal|left|center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_box_second"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="10dp"
+                android:text="Receipt"
+                android:textAlignment="center"
+                android:textColor="#405DB4" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/bReport"
+                android:layout_width="183dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center|right"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_box_second"
+                android:gravity="center_horizontal|center_vertical"
+                android:padding="10dp"
+                android:text="Report"
+                android:textAlignment="center"
+                android:textColor="#405DB4" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bNotification"
+                android:layout_width="218dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center|center_horizontal|left|center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_box_second"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="10dp"
+                android:text="Notification"
+                android:textAlignment="center"
+                android:textColor="#405DB4" />
+
+            <View
+                android:layout_width="208dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

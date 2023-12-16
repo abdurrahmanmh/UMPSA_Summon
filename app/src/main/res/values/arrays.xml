@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="vehicleTypeChoice">
+        <item>Car</item>
+        <item>Motorcycle</item>
+    </string-array>
+    <string-array name="AcademicYearChoice">
+        <item>2023/2024</item>
+        <item>2024/2025</item>
+    </string-array>
+
+</resources>
