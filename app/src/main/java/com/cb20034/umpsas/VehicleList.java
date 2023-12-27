@@ -103,24 +103,37 @@ public class VehicleList extends AppCompatActivity {
 
     private void loadAllVehicles() {
         firestore.collection("users")
-                .document(getUserId())
-                .collection("vehicles")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         vehicleList.clear();
-                        for (DocumentSnapshot document : task.getResult()) {
-                            Vehicle vehicle = document.toObject(Vehicle.class);
-                            if (vehicle != null) {
-                                vehicleList.add(vehicle);
-                            }
+                        for (DocumentSnapshot userDocument : task.getResult()) {
+                            // Get the user ID
+                            String userId = userDocument.getId();
+
+                            // Fetch vehicles from the "vehicles" subcollection under the user document
+                            firestore.collection("users").document(userId).collection("vehicles")
+                                    .get()
+                                    .addOnCompleteListener(vehicleTask -> {
+                                        if (vehicleTask.isSuccessful()) {
+                                            for (DocumentSnapshot vehicleDocument : vehicleTask.getResult()) {
+                                                Vehicle vehicle = vehicleDocument.toObject(Vehicle.class);
+                                                if (vehicle != null) {
+                                                    vehicleList.add(vehicle);
+                                                }
+                                            }
+                                            vehicleAdapter.notifyDataSetChanged();
+                                        } else {
+                                            // Handle the exception or show an error message
+                                        }
+                                    });
                         }
-                        vehicleAdapter.notifyDataSetChanged();
                     } else {
                         // Handle the exception or show an error message
                     }
                 });
     }
+
 
     private String getUserId() {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
