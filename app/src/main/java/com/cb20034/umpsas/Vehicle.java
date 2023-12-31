@@ -10,6 +10,7 @@ public class Vehicle implements Serializable {
     private String licenseValidDate;
     private String plateNo;
     private String academicYear;
+    private String userId; // New field to store the user ID
 
     // Default constructor (required for Firestore)
     public Vehicle() {
@@ -28,7 +29,16 @@ public class Vehicle implements Serializable {
         this.academicYear = academicYear;
     }
 
-    // Getter methods
+    // Getter and Setter for userId
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    // Getter methods for existing fields
     public String getVehicleType() {
         return vehicleType;
     }
@@ -57,7 +67,7 @@ public class Vehicle implements Serializable {
         return academicYear;
     }
 
-    // Setter methods (if needed)
+    // Setter methods for existing fields
     public void setVehicleType(String vehicleType) {
         this.vehicleType = vehicleType;
     }
@@ -90,7 +100,7 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return
+        return "Vehicle{" +
                 "vehicleType='" + vehicleType + '\'' +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
@@ -98,6 +108,7 @@ public class Vehicle implements Serializable {
                 ", licenseValidDate='" + licenseValidDate + '\'' +
                 ", plateNo='" + plateNo + '\'' +
                 ", academicYear='" + academicYear + '\'' +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }

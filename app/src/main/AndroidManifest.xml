@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UMPSASummon"
         tools:targetApi="31">
+        <activity
+            android:name=".SummonAdd"
+            android:exported="false" />
         <activity
             android:name=".SummonList"
             android:exported="false" />
@@ -78,5 +87,6 @@
             </intent-filter>
         </activity>
     </application>
+
 
 </manifest>

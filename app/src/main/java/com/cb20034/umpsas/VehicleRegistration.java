@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -39,9 +40,9 @@ public class VehicleRegistration extends AppCompatActivity {
         // Initialize UI elements
         brandText = findViewById(R.id.brandText);
         modelText = findViewById(R.id.modelText);
-        colorText = findViewById(R.id.ColorText);
+        colorText = findViewById(R.id.colorText);
         plateNoText = findViewById(R.id.plateNoText);
-        licenseValidDateText = findViewById(R.id.LicenseValidDateText);
+        licenseValidDateText = findViewById(R.id.licenseValidDate);
         cancelButton = findViewById(R.id.cancelButton);
         confirmButton = findViewById(R.id.confirmButton);
         spinnerVehicleType = findViewById(R.id.spinnerVehicleType);
@@ -122,6 +123,13 @@ public class VehicleRegistration extends AppCompatActivity {
             String licenseValidDate = licenseValidDateText.getText().toString();
             String academicYear = spinnerAcademicYear.getSelectedItem().toString();
             String vehicleType = spinnerVehicleType.getSelectedItem().toString();
+
+            // Check if plateNo is not empty
+            if (TextUtils.isEmpty(plateNo)) {
+                Toast.makeText(this, "Please enter the plate number", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             // Create a Map to store vehicle details
             Vehicle vehicle = new Vehicle();
 
@@ -136,6 +144,7 @@ public class VehicleRegistration extends AppCompatActivity {
                 return; // Exit the method, do not proceed with registration
             }
 
+            vehicle.setUserId(userId);
             vehicle.setVehicleType(vehicleType);
             vehicle.setBrand(brand);
             vehicle.setModel(model);
@@ -144,10 +153,11 @@ public class VehicleRegistration extends AppCompatActivity {
             vehicle.setLicenseValidDate(licenseValidDate);
             vehicle.setAcademicYear(academicYear);
 
-            // Add the vehicle details to Firestore
+            // Add the vehicle details to Firestore with plateNo as the document ID
             firestore.collection("users").document(userId).collection("vehicles")
-                    .add(vehicle)
-                    .addOnSuccessListener(documentReference -> {
+                    .document(plateNo)
+                    .set(vehicle)
+                    .addOnSuccessListener(aVoid -> {
                         Toast.makeText(VehicleRegistration.this, "Vehicle registered successfully", Toast.LENGTH_SHORT).show();
                         new Handler().postDelayed(() -> {
                             // Finish the current activity (vehicle registration)
@@ -163,4 +173,5 @@ public class VehicleRegistration extends AppCompatActivity {
                     });
         }
     }
+
 }

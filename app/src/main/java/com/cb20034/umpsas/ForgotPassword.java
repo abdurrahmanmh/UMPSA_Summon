@@ -28,8 +28,8 @@ public class ForgotPassword extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        emailText = findViewById(R.id.emailText);
-        bReset = findViewById(R.id.bReset);
+        emailText = findViewById(R.id.emailForgot);
+        bReset = findViewById(R.id.bResetPassword);
 
         bReset.setOnClickListener(new View.OnClickListener() {
             @Override

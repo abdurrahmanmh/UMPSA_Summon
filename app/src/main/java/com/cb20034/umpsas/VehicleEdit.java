@@ -58,7 +58,7 @@ public class VehicleEdit extends AppCompatActivity {
 
         cancelEditButton = findViewById(R.id.cancelEditButton);
         confirmEditButton = findViewById(R.id.confirmEditButton);
-        licenseValidDateText = findViewById(R.id.LicenseValidDateText);
+        licenseValidDateText = findViewById(R.id.licenseValidDate);
 
         // Set up click listeners
         licenseValidDateText.setOnClickListener(new View.OnClickListener() {
@@ -81,9 +81,9 @@ public class VehicleEdit extends AppCompatActivity {
             public void onClick(View v) {
                 // Retrieve values from the widgets
                 Spinner vehicleTypeSpinner = findViewById(R.id.spinnerVehicleType);
-                EditText brandText = findViewById(R.id.brandText);
+                EditText brandText = findViewById(R.id.plateNoTXT);
                 EditText modelText = findViewById(R.id.modelText);
-                EditText colorText = findViewById(R.id.ColorText);
+                EditText colorText = findViewById(R.id.colorText);
                 EditText plateNoText = findViewById(R.id.plateNoText);
                 Spinner academicYearSpinner = findViewById(R.id.spinnerAcademicYear);
 

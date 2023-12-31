@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VehicleEdit">
+    tools:context=".VehicleRegistration">
+
     <ScrollView
-        android:layout_width="374dp"
-        android:layout_height="867dp"
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,6 +22,14 @@
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarReg"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="35dp" />
@@ -26,20 +37,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Vehicle Type"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Add Summon"
                 android:textSize="20sp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Spinner
-                    android:id="@+id/spinnerVehicleType"
-                    android:layout_width="match_parent"
-                    android:layout_height="57dp"
-                    android:backgroundTint="#000000"
-                    android:entries="@array/vehicleTypeChoice" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <Space
                 android:layout_width="1dp"
@@ -53,10 +54,10 @@
                     android:id="@+id/plateNoTXT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Brand"
-                    android:inputType="text"
-                    android:required="true"
-                    />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:inputType="textCapCharacters"
+                    android:hint="Plate No" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,13 +70,12 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/modelText"
+                    android:id="@+id/offenceTXT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Model"
-                    android:inputType="text"
-                    android:required="true"
-                    />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Offence" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Space
@@ -87,12 +87,12 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/colorText"
+                    android:id="@+id/locationTXT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Color"
-                    android:required="true"
-                    />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Location" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Space
@@ -104,86 +104,85 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/licenseValidDate"
+                    android:id="@+id/fineAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="License Valid Date"
-                    android:inputType="none"
-                    android:focusable="false"
-                    android:required="true"
-                    />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Fine Amount"
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Space
                 android:layout_width="1dp"
                 android:layout_height="35dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/plateNoText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:hint="Plate No."
-                    android:required="true"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
 
             <TextView
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Academic Year"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Upload Picture"
+                android:textSize="20sp"
+                />
 
-                android:textSize="20sp" />
-
-            <com.google.android.material.textfield.TextInputLayout
+            <ImageView
+                android:id="@+id/addedPicture"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="77dp"
+                android:background="#1976D0"
+                app:srcCompat="@android:drawable/stat_notify_error" />
 
-                <Spinner
-                    android:id="@+id/spinnerAcademicYear"
-                    android:layout_width="match_parent"
-                    android:layout_height="57dp"
-                    android:backgroundTint="#000000"
-                    android:entries="@array/AcademicYearChoice" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabAddPictureSummon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="#1976D1"
+                android:clickable="true"
+                app:srcCompat="@android:drawable/ic_menu_add" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/cancelEditButton"
+                    android:id="@+id/cancelSummon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginRight="30dp"
                     android:layout_weight="1"
                     android:backgroundTint="#D22F2F"
-                    android:text="Cancel Edit" />
+                    android:text="Cancel" />
 
                 <Button
-                    android:id="@+id/confirmEditButton"
+                    android:id="@+id/confirmSummon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_marginLeft="30dp"
                     android:layout_weight="1"
                     android:backgroundTint="#1976D1"
-                    android:text="Confirm Edit" />
+                    android:text="Confirm" />
             </LinearLayout>
-
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="35dp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
