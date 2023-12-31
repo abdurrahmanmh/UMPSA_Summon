@@ -64,16 +64,16 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="465dp">
 
             <ImageView
                 android:id="@+id/summonImageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:scaleType="centerInside"
+                android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
-                android:layout_marginTop="16dp"/>
+                android:scaleType="centerInside" />
         </ScrollView>
 
         <Button
@@ -81,6 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edit Summon" />
+
     </LinearLayout>
 
     <!-- activity_summon_detail.xml -->

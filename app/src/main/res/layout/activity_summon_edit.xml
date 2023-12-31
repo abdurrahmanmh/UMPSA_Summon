@@ -70,8 +70,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:inputType="textCapCharacters"
-                    android:hint="Plate No" />
+                    android:inputType="none"
+                    android:hint="Plate No"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
