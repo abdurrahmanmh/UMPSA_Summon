@@ -116,6 +116,7 @@ public class SummonAdd extends AppCompatActivity {
                 // Check if the plate number exists in the vehicles collection
                 getVehicleUserID();
 
+
             }
         });
     }

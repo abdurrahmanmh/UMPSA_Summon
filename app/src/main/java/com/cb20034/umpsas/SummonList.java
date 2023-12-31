@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SummonList extends AppCompatActivity {
+    private Button addSummonButton;
     private SearchView searchView;
     private ListView listViewSummons;
     private FirebaseFirestore firestore;
@@ -41,10 +43,17 @@ public class SummonList extends AppCompatActivity {
         summonList = new ArrayList<>();
         originalSummonList = new ArrayList<>();
 
-
+        addSummonButton = findViewById(R.id.addSummonButton);
         summonAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, summonList);
         listViewSummons.setAdapter(summonAdapter);
-
+        addSummonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start SummonsManagement.class or Summons.class based on user type
+                Intent intent = new Intent(SummonList.this, SummonAdd.class);
+                startActivity(intent);
+            }
+        });
         listViewSummons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

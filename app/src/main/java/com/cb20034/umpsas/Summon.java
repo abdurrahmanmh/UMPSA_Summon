@@ -70,11 +70,11 @@ public class Summon implements Serializable {
     }
 
     // Getter and Setter for userId
-    public String getUserIdFromSummon() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserIdFromSummon(String userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
     public String getStatus() {
