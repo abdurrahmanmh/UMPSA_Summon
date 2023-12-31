@@ -100,15 +100,6 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "vehicleType='" + vehicleType + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", licenseValidDate='" + licenseValidDate + '\'' +
-                ", plateNo='" + plateNo + '\'' +
-                ", academicYear='" + academicYear + '\'' +
-                ", userId='" + userId + '\'' +
-                '}';
+        return model + '\n' + plateNo ;
     }
 }

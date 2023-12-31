@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -27,9 +26,9 @@ import java.util.Calendar;
 
 public class VehicleEdit extends AppCompatActivity {
 
-    private Button cancelEditButton;
-    private Button confirmEditButton;
-    private EditText licenseValidDateText;
+    private EditText brandText, modelText, colorText, plateNoText, licenseValidDateText;
+    private Spinner academicYearSpinner;
+    private Spinner vehicleTypeSpinner;
     private String userId; // Store the user ID here
     private String vehicleId; // Store the vehicle ID here
     private FirebaseAuth firebaseAuth;
@@ -46,8 +45,9 @@ public class VehicleEdit extends AppCompatActivity {
         // Get the user ID from Firebase Authentication
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
-            checkVehicleRegistration(currentUser.getUid());
             userId = currentUser.getUid();
+            // Retrieve existing vehicle data and populate the UI
+            checkVehicleRegistration(userId);
 
         } else {
             // Handle the case when the user is not logged in
@@ -56,9 +56,13 @@ public class VehicleEdit extends AppCompatActivity {
             return;
         }
 
-        cancelEditButton = findViewById(R.id.cancelEditButton);
-        confirmEditButton = findViewById(R.id.confirmEditButton);
+        brandText = findViewById(R.id.plateNoTXT);
+        modelText = findViewById(R.id.modelText);
+        colorText = findViewById(R.id.colorText);
+        plateNoText = findViewById(R.id.plateNoText);
         licenseValidDateText = findViewById(R.id.licenseValidDate);
+        vehicleTypeSpinner = findViewById(R.id.spinnerVehicleType);
+        academicYearSpinner = findViewById(R.id.spinnerAcademicYear);
 
         // Set up click listeners
         licenseValidDateText.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +72,7 @@ public class VehicleEdit extends AppCompatActivity {
             }
         });
 
-        cancelEditButton.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.cancelEditButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Cancel editing and go back
@@ -76,17 +80,10 @@ public class VehicleEdit extends AppCompatActivity {
             }
         });
 
-        confirmEditButton.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.confirmEditButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Retrieve values from the widgets
-                Spinner vehicleTypeSpinner = findViewById(R.id.spinnerVehicleType);
-                EditText brandText = findViewById(R.id.plateNoTXT);
-                EditText modelText = findViewById(R.id.modelText);
-                EditText colorText = findViewById(R.id.colorText);
-                EditText plateNoText = findViewById(R.id.plateNoText);
-                Spinner academicYearSpinner = findViewById(R.id.spinnerAcademicYear);
-
                 String selectedVehicleType = vehicleTypeSpinner.getSelectedItem().toString();
                 String brand = brandText.getText().toString();
                 String model = modelText.getText().toString();
@@ -167,6 +164,7 @@ public class VehicleEdit extends AppCompatActivity {
             }
         });
     }
+
     private void checkVehicleRegistration(String userId) {
         firestore.collection("users").document(userId).collection("vehicles")
                 .get()
@@ -178,6 +176,9 @@ public class VehicleEdit extends AppCompatActivity {
                             DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
                             vehicleId = documentSnapshot.getId(); // Get ID from the first document
 
+                            // Populate EditText fields with existing data
+                            populateFieldsFromFirestore(documentSnapshot);
+
                         } else {
                             Toast.makeText(VehicleEdit.this, "No vehicle", Toast.LENGTH_SHORT).show();
                         }
@@ -185,5 +186,36 @@ public class VehicleEdit extends AppCompatActivity {
                         // Handle the exception or show an error message
                     }
                 });
+    }
+
+    private void populateFieldsFromFirestore(DocumentSnapshot documentSnapshot) {
+        // Retrieve existing data from Firestore and populate EditText fields
+        String existingBrand = documentSnapshot.getString("brand");
+        String existingModel = documentSnapshot.getString("model");
+        String existingColor = documentSnapshot.getString("color");
+        String existingLicenseValidDate = documentSnapshot.getString("licenseValidDate");
+        String existingPlateNo = documentSnapshot.getString("plateNo");
+        String existingAcademicYear = documentSnapshot.getString("academicYear");
+
+        // Populate EditText fields
+        brandText.setText(existingBrand);
+        modelText.setText(existingModel);
+        colorText.setText(existingColor);
+        licenseValidDateText.setText(existingLicenseValidDate);
+        plateNoText.setText(existingPlateNo);
+
+        // Set the selection in the academic year spinner
+        int academicYearPosition = getSpinnerPosition(academicYearSpinner, existingAcademicYear);
+        academicYearSpinner.setSelection(academicYearPosition);
+    }
+
+    private int getSpinnerPosition(Spinner spinner, String value) {
+        // Helper method to get the position of the specified value in the spinner
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equals(value)) {
+                return i;
+            }
+        }
+        return 0; // Default to the first item if not found
     }
 }

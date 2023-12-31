@@ -1,4 +1,5 @@
 package com.cb20034.umpsas;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,15 @@ public class VehicleListAdapter extends ArrayAdapter<Vehicle> {
             String vehicleBrandText = currentVehicle.getBrand() + " " + currentVehicle.getModel();
             holder.vehicleBrandTV.setText(vehicleBrandText);
         }
+
+        // Set background color based on position
+        int backgroundColor = (position % 2 == 0) ? context.getResources().getColor(R.color.white) : context.getResources().getColor(R.color.colorPrimary);
+        listItemView.setBackgroundColor(backgroundColor);
+
+        // Set text color based on position
+        int textColor = (position % 2 == 0) ? context.getResources().getColor(android.R.color.white) : context.getResources().getColor(android.R.color.black);
+        holder.plateNoTV.setTextColor(textColor);
+        holder.vehicleBrandTV.setTextColor(textColor);
 
         return listItemView;
     }

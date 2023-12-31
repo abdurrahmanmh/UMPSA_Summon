@@ -98,7 +98,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start SummonsManagement.class or Summons.class based on user type
-                startActivity(getIntentForActivity(userType, SummonList.class, Summons.class));
+                startActivity(getIntentForActivity(userType, SummonList.class, SummonList.class));
             }
         });
 

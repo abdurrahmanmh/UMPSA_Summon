@@ -11,14 +11,16 @@ public class Summon implements Serializable {
     private String fineAmount;
     private String imagePath;  // Path to the uploaded image
     private String userId;
-    private String status;// New field to store the user ID
+    private String status;
+    private String date;
+    private String timestamp;// New field to store the user ID
 
     // Constructors
     public Summon() {
         // Default constructor
     }
 
-    public Summon(String plateNumber, String offence, String location, String fineAmount, String imagePath, String userId, String status) {
+    public Summon(String plateNumber, String offence, String location, String fineAmount, String imagePath, String userId, String status, String date, String timestamp) {
         this.plateNumber = plateNumber;
         this.offence = offence;
         this.location = location;
@@ -26,6 +28,8 @@ public class Summon implements Serializable {
         this.imagePath = imagePath;
         this.userId = userId;
         this.status = status;
+        this.date = date;
+        this.timestamp = timestamp;
     }
 
     // Getters and Setters
@@ -73,26 +77,24 @@ public class Summon implements Serializable {
     public String getUserId() {
         return userId;
     }
-
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    public String getStatus() {
-
-        return status;
+    public void setDate(String date) {
+        this.date = date;
     }
-
+    public String getDate() {return date;}
+    public String getStatus() {return status;}
     public void setStatus(String status) {
         this.status = status;
     }
+    public String getTimestamp() {return timestamp;}
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
     public String toString() {
-        return "Summon{" +
-                "Plate='" + plateNumber + '\'' +
-                ", offence='" + offence + '\'' +
-                ", location='" + location + '\'' +
-                ", fine='" + fineAmount + '\'' +
-                ", userid='" + userId + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+        return date +'\n'+ plateNumber + '\n' +
+                "offence :" + offence + '\n'
+         ;
     }
 }

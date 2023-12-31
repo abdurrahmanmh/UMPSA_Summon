@@ -143,7 +143,7 @@ public class Register extends AppCompatActivity {
         // Create a new user object with the provided data
         User newUser;
 
-        newUser = new User(name, id, phoneNo, email, icNumber, userType);
+        newUser = new User(userId, name, id, phoneNo, email, icNumber, userType);
 
 
         // Store the user data in Firestore

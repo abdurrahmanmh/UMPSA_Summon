@@ -1,5 +1,6 @@
 package com.cb20034.umpsas;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -43,14 +45,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
+import java.util.Calendar;
 
 public class SummonAdd extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_PICK = 2;
 
-    private EditText plateNumberEditText, offenceEditText, locationEditText, fineAmountEditText;
+    private EditText plateNumberEditText, offenceEditText, locationEditText, fineAmountEditText, dateSummon;
     private ImageView addedPictureImageView;
     private Button addSummonButton;
     private FloatingActionButton fabAddPicture;
@@ -79,6 +81,8 @@ public class SummonAdd extends AppCompatActivity {
         addedPictureImageView = findViewById(R.id.addedPicture);
         addSummonButton = findViewById(R.id.confirmSummon);
         fabAddPicture = findViewById(R.id.fabAddPictureSummon);
+
+        dateSummon = findViewById(R.id.dateSummon);
 
         cameraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -119,7 +123,39 @@ public class SummonAdd extends AppCompatActivity {
 
             }
         });
+        dateSummon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
     }
+
+    private void showDatePickerDialog() {
+        // Get the current date
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Create a date picker dialog
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // Set the selected date to the text field
+                        String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        dateSummon.setText(selectedDate);
+                    }
+                },
+                year, month, day
+        );
+
+        // Show the date picker dialog
+        datePickerDialog.show();
+    }
+
     private void showImagePickerDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Image Source");
@@ -191,10 +227,11 @@ public class SummonAdd extends AppCompatActivity {
         String location = locationEditText.getText().toString();
         String fineAmount = fineAmountEditText.getText().toString();
         String plateNumber = plateNumberEditText.getText().toString().trim();
+        String date = dateSummon.getText().toString();
         String status = "Unpaid";
 
         String timestamp = generateTimestamp();
-        Summon summon = new Summon(plateNumber, offence, location, fineAmount, "", userId,status);
+        Summon summon = new Summon(plateNumber, offence, location, fineAmount, "", userId,status,date,timestamp);
 
         firestore.collection("users").document(userId).collection("summons").document(timestamp)
                 .set(summon)

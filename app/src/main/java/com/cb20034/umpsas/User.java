@@ -1,6 +1,7 @@
 package com.cb20034.umpsas;
 
 public class User {
+    private String uid;
     private String name;
     private String id;
     private String phoneNo;
@@ -13,7 +14,8 @@ public class User {
         // Default constructor required for Firestore
     }
 
-    public User(String name, String id, String phoneNo, String email, String icNumber, String userType) {
+    public User(String uid,String name, String id, String phoneNo, String email, String icNumber, String userType) {
+        this.uid = uid;
         this.name = name;
         this.id = id;
         this.phoneNo = phoneNo;
@@ -24,7 +26,13 @@ public class User {
     }
 
     // Getters and setters
+    public String getUid() {
+        return uid;
+    }
 
+    public void setUid(String uid) {
+        this.name = uid;
+    }
     public String getName() {
         return name;
     }

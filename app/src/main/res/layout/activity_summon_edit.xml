@@ -8,7 +8,7 @@
     tools:context=".VehicleRegistration">
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollViewSummonEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,14 +39,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:text="Add Summon"
+                android:text="Edit Summon"
                 android:textSize="20sp" />
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dateSummon"
+                    android:id="@+id/editDateSummon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/plateNoTXT"
+                    android:id="@+id/editPlateNoTXT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/offenceTXT"
+                    android:id="@+id/editOffenceTXT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/locationTXT"
+                    android:id="@+id/editLocationTXT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fineAmount"
+                    android:id="@+id/editFineAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -142,7 +142,7 @@
                 />
 
             <ImageView
-                android:id="@+id/addedPicture"
+                android:id="@+id/editedAddedPicture"
                 android:layout_width="match_parent"
                 android:layout_height="77dp"
                 android:background="#1976D0"
@@ -153,7 +153,7 @@
                 android:layout_height="10dp" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabAddPictureSummon"
+                android:id="@+id/editFabAddPictureSummon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -175,7 +175,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/cancelSummon"
+                    android:id="@+id/cancelEditSummon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -185,7 +185,7 @@
                     android:text="Cancel" />
 
                 <Button
-                    android:id="@+id/confirmSummon"
+                    android:id="@+id/confirmEditSummon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"

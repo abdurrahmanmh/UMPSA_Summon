@@ -30,6 +30,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:src="@drawable/ic_edit" />
+
     </LinearLayout>
 
     <!-- ic_edit is the edit icon stored in the drawable folder -->

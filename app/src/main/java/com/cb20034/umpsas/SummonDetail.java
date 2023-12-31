@@ -1,6 +1,9 @@
 package com.cb20034.umpsas;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 public class SummonDetail extends AppCompatActivity {
 
+    private Button editSummonButton;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,7 @@ public class SummonDetail extends AppCompatActivity {
             TextView fineAmountTextView = findViewById(R.id.fineAmountTextView);
             TextView userid = findViewById(R.id.userIdTextView);
             ImageView summonImageView = findViewById(R.id.summonImageView);
+
 
             plateNoTextView.setText("Plate Number: " + selectedSummon.getPlateNumber());
             offenceTextView.setText("Offence: " + selectedSummon.getOffence());
@@ -51,10 +56,26 @@ public class SummonDetail extends AppCompatActivity {
                 // Handle the case where the imagePath is empty or null
                 summonImageView.setImageResource(R.drawable.blue_box);
             }
+
+            editSummonButton = findViewById(R.id.editSummonButton);
+            editSummonButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Handle the "Edit Summon" button click
+                    navigateToEditSummon(selectedSummon);
+                }
+            });
             // Add more TextViews or UI elements to display other summon details
         } else {
             // Handle the case where the selectedSummon is null
             finish();
+        }
+    }
+    private void navigateToEditSummon(Summon selectedSummon) {
+        if (selectedSummon != null) {
+            Intent intent = new Intent(SummonDetail.this, SummonEdit.class);
+            intent.putExtra("selectedSummon", selectedSummon);
+            startActivity(intent);
         }
     }
 }
