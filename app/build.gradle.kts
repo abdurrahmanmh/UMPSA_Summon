@@ -44,6 +44,8 @@ dependencies {
 
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.itextpdf:itext7-core:8.0.2")
+
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment:2.7.6")
     implementation("androidx.navigation:navigation-ui:2.7.6")

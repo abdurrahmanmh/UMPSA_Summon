@@ -114,7 +114,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start SearchVehicle.class or ReceiptList.class based on user type
-                startActivity(getIntentForActivity("Admin", VehicleList.class, ReceiptList.class));
+                startActivity(getIntentForActivity(userType, VehicleList.class, ReceiptList.class));
             }
         });
 

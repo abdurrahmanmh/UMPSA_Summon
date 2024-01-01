@@ -4,36 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReportList">
+    tools:context=".PaymentGetaway">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <SearchView
-            android:id="@+id/searchViewReport"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:queryHint="Search by Date" >
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Payment Getaway"
+            android:textSize="20sp" />
 
-        </SearchView>
-
-        <ListView
-            android:id="@+id/listViewReports"
+        <ImageView
+            android:id="@+id/imageViewPaymentGetaway"
             android:layout_width="match_parent"
-            android:layout_height="599dp"
-            android:divider="@android:color/darker_gray"
-            android:dividerHeight="0.5dp"
-            android:padding="16dp" />
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/fpx_logo" />
 
         <Button
-            android:id="@+id/addReportButton"
+            android:id="@+id/buttonPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Report" />
+            android:text="Proceed" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
