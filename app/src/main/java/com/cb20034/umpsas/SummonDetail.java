@@ -43,25 +43,25 @@ public class SummonDetail extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 
-        isUserAdmin();
         // Retrieve summon details from the intent
         Summon selectedSummon = (Summon) getIntent().getSerializableExtra("selectedSummon");
 
+        isUserAdmin();
         // Display summon details in TextViews
         if (selectedSummon != null) {
             TextView plateNoTextView = findViewById(R.id.plateNoSummonDetail);
             TextView offenceTextView = findViewById(R.id.offenceSummonDetail);
             TextView locationTextView = findViewById(R.id.locationSummonDetail);
             TextView fineAmountTextView = findViewById(R.id.fineAmountSummonDetail);
-            TextView userid = findViewById(R.id.userIdSummonDetail);
+            TextView status = findViewById(R.id.statusSummonDetail);
             ImageView summonImageView = findViewById(R.id.summonImageView);
 
 
             plateNoTextView.setText("Plate Number: " + selectedSummon.getPlateNumber());
             offenceTextView.setText("Offence: " + selectedSummon.getOffence());
             locationTextView.setText("Location: " + selectedSummon.getLocation());
-            fineAmountTextView.setText("Fine Amount: " + selectedSummon.getFineAmount());
-            fineAmountTextView.setText("Userid: " + selectedSummon.getUserId());
+            fineAmountTextView.setText("Fine Amount: RM" + selectedSummon.getFineAmount());
+            status.setText("Status: " + selectedSummon.getStatus());
 
             String imagePath = selectedSummon.getImagePath();
             if (imagePath != null && !imagePath.isEmpty()) {

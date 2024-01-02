@@ -94,7 +94,7 @@ public class Summon implements Serializable {
     }
     public String toString() {
         return date +'\n'+ plateNumber + '\n' +
-                "offence :" + offence + '\n'
+                "offence :" + offence +"  | Status :"+status + '\n'
          ;
     }
 }

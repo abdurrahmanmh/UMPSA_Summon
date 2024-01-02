@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.NOTIFICATION_POST" />
-
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -108,11 +108,7 @@
             android:exported="false"
             android:label="@string/title_activity_vehicle_registration"
             android:theme="@style/Theme.UMPSASummon" />
-        <activity
-            android:name=".Summons"
-            android:parentActivityName=".MainMenu"
-            android:label="Summons"
-            android:exported="false" />
+
         <activity
             android:name=".Vehicle"
             android:parentActivityName=".MainMenu"
