@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -33,6 +34,11 @@ public class SummonDetail extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summon_detail);
+
+        Toolbar toolbar = findViewById(R.id.toolbarSummonDetail);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         firestore = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -43,11 +49,11 @@ public class SummonDetail extends AppCompatActivity {
 
         // Display summon details in TextViews
         if (selectedSummon != null) {
-            TextView plateNoTextView = findViewById(R.id.plateNoTextView);
-            TextView offenceTextView = findViewById(R.id.offenceTextView);
-            TextView locationTextView = findViewById(R.id.locationTextView);
-            TextView fineAmountTextView = findViewById(R.id.fineAmountTextView);
-            TextView userid = findViewById(R.id.userIdTextView);
+            TextView plateNoTextView = findViewById(R.id.plateNoSummonDetail);
+            TextView offenceTextView = findViewById(R.id.offenceSummonDetail);
+            TextView locationTextView = findViewById(R.id.locationSummonDetail);
+            TextView fineAmountTextView = findViewById(R.id.fineAmountSummonDetail);
+            TextView userid = findViewById(R.id.userIdSummonDetail);
             ImageView summonImageView = findViewById(R.id.summonImageView);
 
 

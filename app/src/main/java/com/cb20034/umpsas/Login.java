@@ -18,6 +18,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
@@ -70,6 +75,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
+                            obtainAndStoreFCMToken();
                             updateUI(user);
                         } else {
                             updateUI(null);
@@ -77,7 +83,35 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
+    private void obtainAndStoreFCMToken() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnSuccessListener(token -> {
+                    updateFCMTokenInFirestore(token);
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure to obtain FCM token
+                });
+    }
 
+    private void updateFCMTokenInFirestore(String token) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            Map<String, Object> data = new HashMap<>();
+            data.put("fcmToken", token);
+
+            FirebaseFirestore.getInstance().collection("users").document(userId)
+                    .update(data)
+                    .addOnSuccessListener(aVoid -> {
+                        // FCM token successfully updated in Firestore
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle failure to update FCM token
+                    });
+            // Update the FCM token in Firestore
+            // Add the necessary Firestore update logic here
+        }
+    }
     private void updateUI(FirebaseUser user) {
         if (user != null) {
             Intent intent = new Intent(Login.this, MainMenu.class);

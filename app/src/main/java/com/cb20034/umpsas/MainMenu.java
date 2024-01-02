@@ -1,14 +1,17 @@
 package com.cb20034.umpsas;
 
-import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,26 +23,29 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainMenu extends AppCompatActivity {
     private TextView bSummons, bVehicle, bReceipt, bReport, bNotification;
     private TextView welcomeTextView;
+    private boolean doubleBackToExitPressedOnce = false;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (doubleBackToExitPressedOnce) {
+            // If double back pressed, exit the app
+            finish();
+        } else {
+            // Show a toast message indicating that the user should press back again to exit
+            showToast("Press again to exit");
+            doubleBackToExitPressedOnce = true;
+
+            // Reset the doubleBackToExitPressedOnce variable after a delay
+            new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
         Toolbar toolbar = findViewById(R.id.toolbarMenu);
         setSupportActionBar(toolbar);
-
-        // Add logout button to the toolbar
-        toolbar.inflateMenu(R.menu.menu_logout);
-        toolbar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.action_logout) {
-                logout();
-                return true;
-            }
-            return false;
-        });
-
-
 
         welcomeTextView = findViewById(R.id.welcome);
 
@@ -85,6 +91,21 @@ public class MainMenu extends AppCompatActivity {
                     });
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_logout, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_logout) {
+            logout();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
     private void handleUserType(String userType) {
         if ("Admin".equals(userType)) {
             // If userType is Admin, modify text and visibility
@@ -93,7 +114,7 @@ public class MainMenu extends AppCompatActivity {
             bReceipt.setText("Search Vehicle");
             bReport.setVisibility(View.INVISIBLE);
             bNotification.setVisibility(View.INVISIBLE);
-        }
+        }else {bNotification.setVisibility(View.INVISIBLE);}
         bSummons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,4 +171,8 @@ public class MainMenu extends AppCompatActivity {
         startActivity(intent);
         finish(); // Close the current activity
     }
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
 }

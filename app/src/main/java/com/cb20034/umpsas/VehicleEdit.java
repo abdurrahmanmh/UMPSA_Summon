@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,6 +39,10 @@ public class VehicleEdit extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_edit);
+
+        Toolbar toolbar = findViewById(R.id.toolbarVehicleEdit);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
@@ -196,6 +201,7 @@ public class VehicleEdit extends AppCompatActivity {
         String existingLicenseValidDate = documentSnapshot.getString("licenseValidDate");
         String existingPlateNo = documentSnapshot.getString("plateNo");
         String existingAcademicYear = documentSnapshot.getString("academicYear");
+        String existingVehicleType = documentSnapshot.getString("vehicleType");
 
         // Populate EditText fields
         brandText.setText(existingBrand);

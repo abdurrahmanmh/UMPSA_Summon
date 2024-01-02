@@ -23,7 +23,7 @@
             tools:ignore="MissingConstraints">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarReg"
+                android:id="@+id/toolbarSummonAdd"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:background="?attr/colorPrimary"

@@ -10,6 +10,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarReportList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
         <SearchView
             android:id="@+id/searchViewReport"
             android:layout_width="match_parent"
@@ -24,7 +32,7 @@
         <ListView
             android:id="@+id/listViewReports"
             android:layout_width="match_parent"
-            android:layout_height="599dp"
+            android:layout_height="537dp"
             android:divider="@android:color/darker_gray"
             android:dividerHeight="0.5dp"
             android:padding="16dp" />

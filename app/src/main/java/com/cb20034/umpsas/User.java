@@ -1,6 +1,8 @@
 package com.cb20034.umpsas;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String uid;
     private String name;
     private String id;
@@ -8,13 +10,14 @@ public class User {
     private String email;
     private String icNumber;
     private String userType;
+    private String fcmToken;
 
 
     public User() {
         // Default constructor required for Firestore
     }
 
-    public User(String uid,String name, String id, String phoneNo, String email, String icNumber, String userType) {
+    public User(String uid,String name, String id, String phoneNo, String email, String icNumber, String userType,String fcmToken) {
         this.uid = uid;
         this.name = name;
         this.id = id;
@@ -22,6 +25,7 @@ public class User {
         this.email = email;
         this.icNumber = icNumber;
         this.userType = userType;
+        this.fcmToken=fcmToken;
 
     }
 
@@ -81,6 +85,12 @@ public class User {
         this.userType = userType;
     }
 
+    public String getFcmToken() {
+        return fcmToken;
+    }
 
+    public void setFcmToken(String fcmToken) {
+        this.fcmToken = fcmToken;
+    }
 
 }

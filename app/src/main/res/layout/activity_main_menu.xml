@@ -24,6 +24,7 @@
             android:theme="?attr/actionBarTheme"
             app:title="Main Menu"
             app:menu="@menu/menu_logout"
+            app:titleTextColor="@color/white"
             />
 
         <Space

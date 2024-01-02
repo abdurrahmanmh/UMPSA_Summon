@@ -3,5 +3,6 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- ... other theme attributes ... -->
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 </resources>

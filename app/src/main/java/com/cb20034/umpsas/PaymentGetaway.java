@@ -1,6 +1,7 @@
 package com.cb20034.umpsas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,11 @@ public class PaymentGetaway extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_getaway);
+
+        Toolbar toolbar = findViewById(R.id.toolbarPaymentGetaway);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Summon selectedSummon = (Summon) getIntent().getSerializableExtra("selectedSummon");
 
         firestore = FirebaseFirestore.getInstance();

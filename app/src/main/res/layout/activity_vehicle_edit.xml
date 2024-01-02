@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".VehicleEdit">
+
     <ScrollView
-        android:layout_width="374dp"
-        android:layout_height="867dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,6 +20,14 @@
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarVehicleEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="35dp" />
@@ -26,6 +35,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:text="Select Vehicle Type"
                 android:textSize="20sp" />
 
@@ -37,6 +48,8 @@
                     android:id="@+id/spinnerVehicleType"
                     android:layout_width="match_parent"
                     android:layout_height="57dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:backgroundTint="#000000"
                     android:entries="@array/vehicleTypeChoice" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -53,10 +66,11 @@
                     android:id="@+id/plateNoTXT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:hint="Brand"
                     android:inputType="text"
-                    android:required="true"
-                    />
+                    android:required="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +80,9 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/modelText"
@@ -74,8 +90,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Model"
                     android:inputType="text"
-                    android:required="true"
-                    />
+                    android:required="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Space
@@ -90,9 +105,10 @@
                     android:id="@+id/colorText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:hint="Color"
-                    android:required="true"
-                    />
+                    android:required="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Space
@@ -107,11 +123,12 @@
                     android:id="@+id/licenseValidDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:focusable="false"
                     android:hint="License Valid Date"
                     android:inputType="none"
-                    android:focusable="false"
-                    android:required="true"
-                    />
+                    android:required="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Space
@@ -126,10 +143,11 @@
                     android:id="@+id/plateNoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:hint="Plate No."
-                    android:required="true"
-                    />
+                    android:inputType="text"
+                    android:required="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -141,8 +159,10 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Academic Year"
+                android:layout_marginLeft="20dp"
 
+                android:layout_marginRight="20dp"
+                android:text="Select Academic Year"
                 android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -153,6 +173,8 @@
                     android:id="@+id/spinnerAcademicYear"
                     android:layout_width="match_parent"
                     android:layout_height="57dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:backgroundTint="#000000"
                     android:entries="@array/AcademicYearChoice" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -160,7 +182,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
                 android:orientation="horizontal">
 
                 <Button

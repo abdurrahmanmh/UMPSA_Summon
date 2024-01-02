@@ -1,6 +1,7 @@
 package com.cb20034.umpsas;
 
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,6 +23,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,6 +41,8 @@ import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -46,6 +52,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SummonAdd extends AppCompatActivity {
 
@@ -69,6 +77,10 @@ public class SummonAdd extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summon_add);
+
+        Toolbar toolbar = findViewById(R.id.toolbarSummonAdd);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firestore = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -235,8 +247,11 @@ public class SummonAdd extends AppCompatActivity {
 
         firestore.collection("users").document(userId).collection("summons").document(timestamp)
                 .set(summon)
-                .addOnSuccessListener(aVoid -> {
+                .addOnSuccessListener(aVoid ->
+                {
+                    sendFCMNotification(userId);
                     uploadImage(userId, timestamp);
+
                 }) .addOnFailureListener(e -> {
                     Toast.makeText(SummonAdd.this, "Failed to add summon", Toast.LENGTH_SHORT).show();
                 });
@@ -309,6 +324,43 @@ public class SummonAdd extends AppCompatActivity {
             }
         });
     }
+    private void sendFCMNotification(String userId) {
+        FirebaseFirestore.getInstance().collection("users").document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String userFCMToken = documentSnapshot.getString("fcmToken");
+                        Log.d("TAG", "User FCM Token: " + userFCMToken);
+                        if (userFCMToken != null && !userFCMToken.isEmpty()) {
+                            // Create a notification payload
+                            Map<String, String> data = new HashMap<>();
+                            data.put("title", "Summon Notification");
+                            data.put("body", "You have received a new summon.");
+                            data.put("plateNumber", plateNumberEditText.getText().toString());
+                            data.put("offense", offenceEditText.getText().toString());
+                            // Add other summon details as needed
+
+                            // Send the FCM message
+                            FirebaseMessaging.getInstance().send(new RemoteMessage.Builder(userFCMToken)
+                                    .setData(data)
+                                    .build());
+                        } else {
+                            // Log tag for the case where userFCMToken is empty
+                            Log.e("TAG", "Empty or null FCM token for user with ID: " + userId);
+                        }
+                    } else {
+                        // Log tag for the case where the document does not exist
+                        Log.e("TAG", "Document does not exist for user with ID: " + userId);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    // Log tag for the failure to get user data
+                    Log.e("TAG", "Failed to get user data: " + e.getMessage());
+                });
+    }
+
+
+
 
 }
 

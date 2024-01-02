@@ -9,6 +9,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.NOTIFICATION_POST" />
 
     <application
         android:allowBackup="true"
@@ -22,74 +25,116 @@
         tools:targetApi="31">
         <activity
             android:name=".ReportEdit"
+            android:label="Report Edit"
+            android:parentActivityName=".ReportDetail"
             android:exported="false" />
         <activity
             android:name=".ReportAdd"
+            android:label="Report Add"
+            android:parentActivityName=".ReportList"
             android:exported="false" />
         <activity
             android:name=".PaymentGetaway"
+            android:label="Payment Getaway"
+            android:parentActivityName=".SummonDetail"
             android:exported="false" />
         <activity
             android:name=".SummonEdit"
+            android:label="Summon Edit"
+            android:parentActivityName=".SummonDetail"
             android:exported="false" />
         <activity
             android:name=".SummonAdd"
+            android:label="Summon Add"
+            android:parentActivityName=".SummonList"
             android:exported="false" />
         <activity
             android:name=".SummonList"
+            android:label="Summon List"
+            android:parentActivityName=".MainMenu"
             android:exported="false" />
         <activity
             android:name=".VehicleDetails"
+            android:label="Vehicle Details"
+            android:parentActivityName=".VehicleList"
             android:exported="false" />
         <activity
             android:name=".VehicleMenu"
+            android:label="Vehicle Menu"
+            android:parentActivityName=".MainMenu"
             android:exported="false" />
         <activity
             android:name=".VehicleEdit"
+            android:label="Vehicle Edit"
+            android:parentActivityName=".VehicleMenu"
             android:exported="false" />
         <activity
             android:name=".VehicleList"
+            android:label="Vehicle List"
+            android:parentActivityName=".MainMenu"
             android:exported="false" />
         <activity
             android:name=".Notification"
+            android:parentActivityName=".ReportList"
             android:exported="false" />
         <activity
             android:name=".ReportDetail"
+            android:label="Report Detail"
+            android:parentActivityName=".ReportList"
             android:exported="false" />
         <activity
             android:name=".ReportList"
+            android:label="Report List"
+            android:parentActivityName=".MainMenu"
             android:exported="false" />
         <activity
             android:name=".ReceiptDetail"
+            android:label="Receipt List"
+            android:parentActivityName=".ReceiptList"
             android:exported="false" />
         <activity
             android:name=".SummonDetail"
+            android:label="Summon Detail"
+            android:parentActivityName=".SummonList"
             android:exported="false" />
         <activity
             android:name=".ReceiptList"
+            android:label="Receipt List"
+            android:parentActivityName=".MainMenu"
             android:exported="false" />
         <activity
             android:name=".VehicleRegistration"
+            android:parentActivityName=".VehicleMenu"
             android:exported="false"
             android:label="@string/title_activity_vehicle_registration"
             android:theme="@style/Theme.UMPSASummon" />
         <activity
             android:name=".Summons"
+            android:parentActivityName=".MainMenu"
+            android:label="Summons"
             android:exported="false" />
         <activity
             android:name=".Vehicle"
+            android:parentActivityName=".MainMenu"
             android:exported="false" />
         <activity
             android:name=".MainMenu"
+            android:parentActivityName=".MainMenu"
             android:exported="false" />
         <activity
             android:name=".ForgotPassword"
+            android:label="Forgot Password"
+            android:parentActivityName=".Login"
             android:exported="false" />
         <activity
             android:name=".Register"
+            android:label="Register"
+            android:parentActivityName=".StartPage"
             android:exported="false" />
         <activity
             android:name=".Login"
+            android:label="Login"
+            android:parentActivityName=".StartPage"
             android:exported="false" />
         <activity
             android:name=".StartPage"
@@ -100,6 +145,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
