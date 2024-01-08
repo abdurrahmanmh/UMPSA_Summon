@@ -7,12 +7,12 @@
     tools:context=".VehicleMenu">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        tools:ignore="MissingConstraints">
+        tools:layout_editor_absoluteY="1dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarVehicle"
@@ -59,40 +59,46 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <Space
-                android:layout_width="214dp"
-                android:layout_height="62dp"
-                android:layout_weight="0" />
-
+            <!-- Edit Button -->
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabEditVehicle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:clickable="true"
                 android:backgroundTint="#1976D1"
+                android:clickable="true"
                 app:srcCompat="@drawable/ic_edit" />
+
+            <!-- Add Button -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabAddVehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
                 android:layout_marginRight="10dp"
                 android:backgroundTint="#1976D1"
                 android:clickable="true"
                 app:srcCompat="@android:drawable/ic_menu_add" />
 
+            <!-- Delete Button -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabDeleteVehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="10dp"
                 android:backgroundTint="#1976D1"
                 android:clickable="true"
                 app:srcCompat="@android:drawable/ic_menu_delete" />

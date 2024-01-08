@@ -196,8 +196,8 @@ public class ReportAdd extends AppCompatActivity {
 
                                     // You can also navigate to another activity, finish the current activity, etc.
                                     // Example: Navigate to the main activity
-                                    Intent intent = new Intent(ReportAdd.this, MainMenu.class);
-                                    startActivity(intent);
+//                                    Intent intent = new Intent(ReportAdd.this, MainMenu.class);
+//                                    startActivity(intent);
                                     finish();
                                 } else {
                                     Toast.makeText(ReportAdd.this, "Report image failed!", Toast.LENGTH_SHORT).show();

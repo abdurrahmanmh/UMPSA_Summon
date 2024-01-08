@@ -93,6 +93,7 @@ public class VehicleMenu extends AppCompatActivity {
 
                             // Hide the add vehicle button
                             fabAddVehicle.setVisibility(View.GONE);
+                            fabDeleteVehicle.setVisibility(View.GONE);
 
                         } else {
                             // No registered vehicle, show the appropriate message

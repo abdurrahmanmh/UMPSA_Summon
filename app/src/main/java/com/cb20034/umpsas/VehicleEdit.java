@@ -154,6 +154,7 @@ public class VehicleEdit extends AppCompatActivity {
                 Toast.makeText(VehicleEdit.this, "Vehicle updated successfully!", Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(() -> {
                     // Finish the current activity (vehicle registration)
+
                     finish();
 
                     // Start the vehicle menu activity after a 1-second delay
@@ -209,7 +210,9 @@ public class VehicleEdit extends AppCompatActivity {
         colorText.setText(existingColor);
         licenseValidDateText.setText(existingLicenseValidDate);
         plateNoText.setText(existingPlateNo);
-
+        plateNoText.setKeyListener(null);
+        int vehicleTypePosition = getSpinnerPosition(vehicleTypeSpinner, existingVehicleType);
+        vehicleTypeSpinner.setSelection(vehicleTypePosition);
         // Set the selection in the academic year spinner
         int academicYearPosition = getSpinnerPosition(academicYearSpinner, existingAcademicYear);
         academicYearSpinner.setSelection(academicYearPosition);

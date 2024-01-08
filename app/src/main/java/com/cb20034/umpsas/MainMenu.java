@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,21 +26,18 @@ public class MainMenu extends AppCompatActivity {
     private TextView welcomeTextView;
     private boolean doubleBackToExitPressedOnce = false;
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        if (doubleBackToExitPressedOnce) {
-            // If double back pressed, exit the app
-            finish();
-        } else {
-            // Show a toast message indicating that the user should press back again to exit
-            showToast("Press again to exit");
-            doubleBackToExitPressedOnce = true;
-
-            // Reset the doubleBackToExitPressedOnce variable after a delay
-            new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+    private final OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+        @Override
+        public void handleOnBackPressed() {
+            if (doubleBackToExitPressedOnce) {
+                finishAffinity();
+            } else {
+                showToast("Press again to exit");
+                doubleBackToExitPressedOnce = true;
+                new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+            }
         }
-    }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +79,7 @@ public class MainMenu extends AppCompatActivity {
 
                                     // Set the welcome message in the TextView
                                     welcomeTextView.setText("Welcome " + user.getName());
+                                    getOnBackPressedDispatcher().addCallback(MainMenu.this, onBackPressedCallback);
                                 }
                             } else {
                                 startActivity(new Intent(MainMenu.this, StartPage.class));
@@ -174,5 +173,9 @@ public class MainMenu extends AppCompatActivity {
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        onBackPressedCallback.remove();
+    }
 }

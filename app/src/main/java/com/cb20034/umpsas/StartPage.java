@@ -90,6 +90,14 @@ public class StartPage extends AppCompatActivity {
                     PackageManager.PERMISSION_GRANTED) {
                 permissionsToRequest.add(Manifest.permission.MANAGE_EXTERNAL_STORAGE);
             }
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES);
+            }
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                    permissionsToRequest.add(Manifest.permission.READ_MEDIA_VIDEO);
+            }
 
             if (!permissionsToRequest.isEmpty()) {
                 // Some permissions are not granted, request them

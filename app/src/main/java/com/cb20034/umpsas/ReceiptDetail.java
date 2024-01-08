@@ -17,6 +17,9 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+
+import java.io.File;
+
 public class ReceiptDetail extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private FirebaseStorage storage;
@@ -63,34 +66,42 @@ public class ReceiptDetail extends AppCompatActivity {
         finish();
         }
     }
-    private void saveAsPDF(Receipt selectedReceipt){
+    private void saveAsPDF(Receipt selectedReceipt) {
         try {
-            // Create a PdfDocument instance
-            String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/receipt.pdf";
-            PdfDocument pdfDocument = new PdfDocument(new PdfWriter(pdfPath));
+            // Get the external files directory
+            File externalFilesDir = getExternalFilesDir(null);
 
-            // Create a Document instance
-            Document document = new Document(pdfDocument);
+            if (externalFilesDir != null) {
+                // Create a PdfDocument instance
+                String pdfPath = externalFilesDir.getAbsolutePath() + "/receipt.pdf";
+                PdfDocument pdfDocument = new PdfDocument(new PdfWriter(pdfPath));
 
-            // Add receipt details to the PDF
-            document.add(new Paragraph("Receipt ID: " + selectedReceipt.getReceiptId()));
-            document.add(new Paragraph("Payment Date: " + selectedReceipt.getPayDate()));
-            document.add(new Paragraph("Summon ID: " + selectedReceipt.getSummonId()));
-            document.add(new Paragraph("Payment Method : " + selectedReceipt.getPaymentMethod()));
-            document.add(new Paragraph("Amount Paid : RM" + selectedReceipt.getAmountPaid()));
-            // Add other receipt details as needed
+                // Create a Document instance
+                Document document = new Document(pdfDocument);
 
-            // Close the Document
-            document.close();
+                // Add receipt details to the PDF
+                document.add(new Paragraph("Receipt ID: " + selectedReceipt.getReceiptId()));
+                document.add(new Paragraph("Payment Date: " + selectedReceipt.getPayDate()));
+                document.add(new Paragraph("Summon ID: " + selectedReceipt.getSummonId()));
+                document.add(new Paragraph("Payment Method : " + selectedReceipt.getPaymentMethod()));
+                document.add(new Paragraph("Amount Paid : RM" + selectedReceipt.getAmountPaid()));
+                // Add other receipt details as needed
 
-            // Show a Toast indicating successful PDF creation
-            Toast.makeText(this, "PDF saved successfully", Toast.LENGTH_SHORT).show();
+                // Close the Document
+                document.close();
+
+                // Show a Toast indicating successful PDF creation
+                Toast.makeText(this, "PDF saved successfully at" +pdfPath, Toast.LENGTH_SHORT).show();
+            } else {
+                // Handle the case where externalFilesDir is null
+                Toast.makeText(this, "Error: External storage not available", Toast.LENGTH_SHORT).show();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
             // Show a Toast indicating an error
             Toast.makeText(this, "Error saving PDF", Toast.LENGTH_SHORT).show();
         }
-
     }
+
 }

@@ -146,7 +146,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:hint="Plate No."
-                    android:inputType="text"
+                    android:inputType="none"
+                    android:clickable="false"
                     android:required="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
