@@ -233,7 +233,7 @@ public class SummonAdd extends AppCompatActivity {
                         addSummon(userId);
                     } else {
                         // Handle no matching vehicle
-                        Toast.makeText(SummonAdd.this, "Summon fail successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SummonAdd.this, "Plate Number Does not exist!", Toast.LENGTH_SHORT).show();
                     }
                 })
 
