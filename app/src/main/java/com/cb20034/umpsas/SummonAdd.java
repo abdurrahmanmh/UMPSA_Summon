@@ -62,7 +62,7 @@ public class SummonAdd extends AppCompatActivity {
 
     private EditText plateNumberEditText, offenceEditText, locationEditText, fineAmountEditText, dateSummon;
     private ImageView addedPictureImageView;
-    private Button addSummonButton;
+    private Button addSummonButton,cancelSummonButton;
     private FloatingActionButton fabAddPicture;
 
     private Uri imageUri;
@@ -92,7 +92,9 @@ public class SummonAdd extends AppCompatActivity {
         fineAmountEditText = findViewById(R.id.fineAmount);
         addedPictureImageView = findViewById(R.id.addedPicture);
         addSummonButton = findViewById(R.id.confirmSummon);
+        cancelSummonButton = findViewById(R.id.cancelSummon);
         fabAddPicture = findViewById(R.id.fabAddPictureSummon);
+
 
         dateSummon = findViewById(R.id.dateSummon);
 
@@ -133,6 +135,13 @@ public class SummonAdd extends AppCompatActivity {
                 getVehicleUserID();
 
 
+            }
+        });
+        cancelSummonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
             }
         });
         dateSummon.setOnClickListener(new View.OnClickListener() {
@@ -310,12 +319,12 @@ public class SummonAdd extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(SummonAdd.this, "Summon added successfully!", Toast.LENGTH_SHORT).show();
-
+                                    finish();
                                     // You can also navigate to another activity, finish the current activity, etc.
                                     // Example: Navigate to the main activity
-                                    Intent intent = new Intent(SummonAdd.this, MainMenu.class);
+                                    Intent intent = new Intent(SummonAdd.this, SummonList.class);
                                     startActivity(intent);
-                                    finish();
+
                                 } else {
                                     Toast.makeText(SummonAdd.this, "Summon update failed!", Toast.LENGTH_SHORT).show();
                                 }

@@ -73,6 +73,7 @@ public class Register extends AppCompatActivity {
                     adminKey = ((TextInputEditText) findViewById(R.id.adminKeyText)).getText().toString();
                     if ("123456".equals(adminKey)) {
                         registerUserAndStoreData(name, id, password, phoneNo, email, icNumber, userType);
+
                     } else {
                         Toast.makeText(Register.this, "Wrong Key.",
                                 Toast.LENGTH_SHORT).show();
@@ -80,6 +81,7 @@ public class Register extends AppCompatActivity {
                 } else {
                     // Register the user and store data in Firestore
                     registerUserAndStoreData(name, id, password, phoneNo, email, icNumber, userType);
+
                 }
             }
         });
@@ -155,6 +157,7 @@ public class Register extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         // Registration and data storage are successful
                         showToast("Registration successful!");
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

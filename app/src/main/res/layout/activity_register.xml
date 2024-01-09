@@ -41,7 +41,9 @@
               android:layout_height="wrap_content"
               android:layout_marginLeft="20dp"
               android:layout_marginRight="20dp"
-              android:hint="Insert Name" />
+              android:hint="Insert Name"
+              android:inputType="textCapSentences"
+              />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Space
@@ -59,7 +61,7 @@
               android:layout_marginLeft="20dp"
               android:layout_marginRight="20dp"
               android:hint="Insert ID"
-              android:inputType="text"
+              android:inputType="textCapCharacters"
               android:maxLength="10" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -79,7 +81,8 @@
               android:layout_marginLeft="20dp"
               android:layout_marginRight="20dp"
               android:hint="Password"
-              android:inputType="textPassword" />
+              android:inputType="textPassword"
+              />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Space
@@ -97,6 +100,7 @@
               android:layout_marginLeft="20dp"
               android:layout_marginRight="20dp"
               android:hint="Phone No"
+              android:maxLength="12"
               android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 

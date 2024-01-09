@@ -269,9 +269,9 @@ public class SummonEdit extends AppCompatActivity {
 
                                     // You can also navigate to another activity, finish the current activity, etc.
                                     // Example: Navigate to the main activity
-//                                    Intent intent = new Intent(SummonEdit.this, SummonList.class);
-//                                    startActivity(intent);
                                     finish();
+                                    Intent intent = new Intent(SummonEdit.this, SummonList.class);
+                                    startActivity(intent);
                                 } else {
                                     Toast.makeText(SummonEdit.this, "Summon update failed!", Toast.LENGTH_SHORT).show();
                                 }

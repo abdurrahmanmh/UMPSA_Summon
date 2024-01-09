@@ -72,6 +72,7 @@
               android:layout_height="wrap_content"
               android:layout_marginLeft="20dp"
               android:layout_marginRight="20dp"
+              android:inputType="textCapSentences"
               android:hint="Brand" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -90,6 +91,7 @@
               android:layout_height="wrap_content"
               android:layout_marginLeft="20dp"
               android:layout_marginRight="20dp"
+              android:inputType="textCapSentences"
               android:hint="Model" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -143,6 +145,8 @@
               android:layout_height="wrap_content"
               android:layout_marginLeft="20dp"
               android:layout_marginRight="20dp"
+              android:maxLength="10"
+              android:inputType="textCapCharacters"
               android:hint="Plate No." />
         </com.google.android.material.textfield.TextInputLayout>
 

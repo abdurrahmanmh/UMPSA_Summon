@@ -114,7 +114,12 @@ public class ReportAdd extends AppCompatActivity {
                 showImagePickerDialog();
             }
         });
-
+        cancelReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         confirmReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -196,9 +201,9 @@ public class ReportAdd extends AppCompatActivity {
 
                                     // You can also navigate to another activity, finish the current activity, etc.
                                     // Example: Navigate to the main activity
-//                                    Intent intent = new Intent(ReportAdd.this, MainMenu.class);
-//                                    startActivity(intent);
                                     finish();
+                                    Intent intent = new Intent(ReportAdd.this, ReportList.class);
+                                    startActivity(intent);
                                 } else {
                                     Toast.makeText(ReportAdd.this, "Report image failed!", Toast.LENGTH_SHORT).show();
                                 }
