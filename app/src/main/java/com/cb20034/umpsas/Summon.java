@@ -1,7 +1,5 @@
 package com.cb20034.umpsas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.io.Serializable;
 
 public class Summon implements Serializable {
